@@ -1,0 +1,126 @@
+'''def wish(name):
+    print("good morning",name)
+greeting=wish
+print(id(wish))
+print(id(greeting))
+
+greeting("gvk")
+wish("rk")
+
+wish('kumar')
+greeting("kumar")'''
+#del(wish)
+#wish('kumar') gives an error however greeting(kumar) is not through any error
+''' l=[1,2,3,4,5]
+list1=list(map(lambda x:5+x,l))
+print(list1)'''
+
+#reduce function
+
+''' from functools import *
+l=[1,2,3,4,5,6]
+result=reduce(lambda x,y:x*y,l)
+print(result)'''
+
+#nested function
+
+'''def outer():
+    print('outer function started')
+    def inner():
+        print('inner function executing')
+    print('outer function calling inner function')
+    inner()
+
+outer()
+
+def outer():
+    print('outer function started')
+    def inner():
+        print('inner function executing')
+    print('outer function returning inner function')
+    return inner
+f1=outer
+f1()# this case we providing alias for outer it executes only outer function
+f1=outer()
+f1()# this case we calling outer function with alias it returns innerfunction 
+
+#decorator function
+def decor(func):
+    def inner(name):
+        if name=='sunny':
+            print('hello',name,'bad morning')
+        else:
+            func(name)
+    return inner
+
+@decor
+def wish(name):
+    print('hello',name,'good morning')
+
+wish('sunny')
+wish('gvk')
+
+#with out @decor
+def badwish(func):
+    def inner(name):
+        if name=='sunny':
+            print('hello',name,'bad morning')
+        else:
+            func(name)
+    return inner
+
+@badwish
+def wish(name):
+    print('hello',name,'good morning')
+
+#wish=badwish(wish)
+wish('sunny')
+wish('gvk')
+
+#decorator chaining
+def decor1(value):
+    def inner():
+        x=value()
+        return x**x
+    return inner
+def decor(func):
+    def inner():
+        x=func()
+        return 2*x
+    return inner
+#@decor1
+@decor
+def num():
+    return 10
+print(num())  '''
+
+#generators
+
+import random
+import time
+names=['gvk','ram','kumar','krishna']
+subjects=['python','c','java','c++','selinium']
+def person_list(num):
+    result=[]
+    for i in range(num):
+        person= dict(id=i, student=random.choice(names), course=random.choice(subjects))
+        result.append('person')
+    return result
+t1=time.clock()
+people=person_list(1000000)
+print(people)
+t2=time.clock()
+print('time taking for list object:',t2-t1)
+
+def person_gen(num):
+    for i in range(num):
+        person= dict(id=i, student=random.choice(names), course=random.choice(subjects))
+    yield person
+t1=time.clock()
+people=person_gen(1000000)
+print(people)
+t2=time.clock()
+print('time taking for generator object:',t2-t1)
+
+
+
